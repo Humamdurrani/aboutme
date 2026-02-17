@@ -3,35 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Humam Durrani - Professional Webpage</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>About Me</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.5s, color 0.5s;
+        }
+        .light-mode {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        .dark-mode {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        header {
+            text-align: center;
+            padding: 50px;
+            position: relative;
+            animation: entrance 1s;
+        }
+        @keyframes entrance {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+            margin: 0;
+            overflow: hidden; 
+            white-space: nowrap; 
+            border-right: 0.15em solid;
+            width: 0;
+            animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: black; }
+        }
+        .toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: inherit;
+            border: 2px solid currentColor;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .animated-gradient {
+            background: linear-gradient(90deg, rgba(255,0,150,1) 0%, rgba(0,204,255,1) 100%);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
 </head>
-<body>
+<body class="light-mode animated-gradient">
     <header>
-        <h1>Humam Durrani</h1>
-        <h2>Founder of TheTechValley</h2>
+        <button class="toggle" onclick="toggleMode()">Toggle Dark/Light Mode</button>
+        <h1 id="headline">Welcome to My About Page</h1>
     </header>
-    <main>
-        <section>
-            <h3>About Me</h3>
-            <p>Welcome to my professional page! My name is Humam Durrani, and I am the founder of TheTechValley, an innovative technology hub focused on nurturing talent and fostering growth in the tech industry.</p>
-        </section>
-        <section>
-            <h3>Achievements</h3>
-            <ul>
-                <li>Established TheTechValley, which has successfully incubated numerous startups.</li>
-                <li>Recognized as a leader in tech innovation and entrepreneurship.</li>
-                <li>Speaker at various tech conferences and seminars.</li>
-                <li>Contributed to community development projects aimed at increasing technology access.</li>
-            </ul>
-        </section>
-        <section>
-            <h3>Vision</h3>
-            <p>My vision is to create a vibrant ecosystem where technology flourishes, and aspiring tech leaders can realize their potential. I aim to empower the next generation of innovators and encourage collaboration among tech enthusiasts.</p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2026 Humam Durrani. All rights reserved.</p>
-    </footer>
+    <script>
+        function toggleMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+        }
+    </script>
 </body>
 </html>
