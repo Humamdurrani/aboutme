@@ -3,79 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me</title>
+    <title>About Humam Durrani</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
+            font-family: Arial, sans-serif;
             transition: background-color 0.5s, color 0.5s;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: #333;
         }
-        .light-mode {
-            background-color: #ffffff;
-            color: #000000;
+
+        body.light {
+            background: linear-gradient(135deg, #3a6073, #3a6e87);
+            color: #fff;
         }
-        .dark-mode {
-            background-color: #000000;
-            color: #ffffff;
-        }
+        
         header {
             text-align: center;
             padding: 50px;
-            position: relative;
-            animation: entrance 1s;
+            animation: fadeIn 1s;
         }
-        @keyframes entrance {
-            from { opacity: 0; transform: translateY(-50px); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        h1 {
-            margin: 0;
-            overflow: hidden; 
-            white-space: nowrap; 
-            border-right: 0.15em solid;
-            width: 0;
-            animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
+
+        .toggle {
+            margin: 20px;
         }
+
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+            margin: 15px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .headline {
+            font-size: 2em;
+            border-right: 4px solid;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typing 4s steps(30) forwards, blink 0.75s step-end infinite;
+        }
+
         @keyframes typing {
             from { width: 0; }
             to { width: 100%; }
         }
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
+
+        @keyframes blink {
+            0%, 100% { border-color: transparent; }
             50% { border-color: black; }
         }
-        .toggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: inherit;
-            border: 2px solid currentColor;
-            padding: 10px;
-            cursor: pointer;
-        }
-        .animated-gradient {
-            background: linear-gradient(90deg, rgba(255,0,150,1) 0%, rgba(0,204,255,1) 100%);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-        }
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            animation: fadeIn 1s;
         }
     </style>
 </head>
-<body class="light-mode animated-gradient">
+<body>
     <header>
-        <button class="toggle" onclick="toggleMode()">Toggle Dark/Light Mode</button>
-        <h1 id="headline">Welcome to My About Page</h1>
+        <h1 class="headline">Welcome to Humam Durrani's Page!</h1>
+        <button class="toggle">Toggle Dark/Light Mode</button>
     </header>
+    <section class="about">
+        <div class="card">
+            <h2>About Me</h2>
+            <p>Hi! I’m Humam Durrani, a passionate developer.</p>
+        </div>
+        <div class="card">
+            <h2>TheTechValley</h2>
+            <p>Welcome to TheTechValley, where technology meets innovation!</p>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2026 Humam Durrani</p>
+    </footer>
     <script>
-        function toggleMode() {
-            const body = document.body;
-            body.classList.toggle('dark-mode');
-            body.classList.toggle('light-mode');
+        const toggleButton = document.querySelector('.toggle');
+        toggleButton.onclick = () => {
+            document.body.classList.toggle('light');
+            localStorage.setItem('mode', document.body.classList.contains('light') ? 'light' : 'dark');
+        };
+
+        // Check local storage for saved mode
+        if (localStorage.getItem('mode') === 'light') {
+            document.body.classList.add('light');
         }
     </script>
 </body>
